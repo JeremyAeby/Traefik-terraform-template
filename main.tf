@@ -57,18 +57,18 @@ resource "proxmox_virtual_environment_file" "traefik_container_template" {
 resource "proxmox_virtual_environment_container" "traefik" {
   description   = "Traefik LXC managed by Terraform"
   node_name     = var.node
-  vm_id         = var.container_nbr
+  vm_id         = 110
   started       = true
   unprivileged  = true
 
 
   initialization {
-    hostname = "traefik"
+    hostname = var.hostname
 
     ip_config {
       ipv4 {
-        address = "192.168.1.230/24"
-	    gateway = "192.168.1.1"
+        address = var.container_ip
+	      gateway = var.container_gateway
       }
     }
 
@@ -88,17 +88,17 @@ resource "proxmox_virtual_environment_container" "traefik" {
     type = "debian" 
   }
   cpu {
-    cores = 2
+    cores = var.cpu_cores
   }
 
   memory {
-    dedicated = 512
-    swap      = 512
+    dedicated = var.mem_dedicated
+    swap      = var.mem_swap
   }
 
   disk {
-    datastore_id = "local-lvm"
-    size         = 4
+    datastore_id = var.disk_datastore_id
+    size         = var.disk_size
   }
 
   features {
