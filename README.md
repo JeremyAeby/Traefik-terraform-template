@@ -3,8 +3,8 @@ Template for auto provisioning of traefik with terraform and proxmox
 
 ## Files to fill out 
 
-* terraform.tfvars : fill out with your variables
-* /files/traefik.yml : add your traefik configuration 
+* `terraform.tfvars` : fill out with your variables
+* `/files/traefik.yml` : add your traefik configuration 
 
 ## Building the container
 1. Install terraform in your Proxmox server (on the main shell)
